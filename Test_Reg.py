@@ -14,16 +14,58 @@ class Test_Reg(unittest.TestCase):
         self.verificationErrors = []
         self.accept_next_alert = True
 
-    def test_reg_correct_1(self):
+    def test_reg_correct_min_1(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "Nigger", "White", "100000", "test@mail.ru", "12345678")
+        self.registration(driver, "Ni", "White", "100001", "test1@mail.ru", "12345678")
+        self.logout(driver)
+
+    def test_reg_correct_middle_1(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "Nigger", "White", "100001", "test1@mail.ru", "12345678")
+        self.logout(driver)
+
+    def test_reg_correct_max_1(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "Niggerrrrrrrrrr", "White", "100001", "test1@mail.ru", "12345678")
         self.logout(driver)
 
     def test_reg_empty_2(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
         self.registration(driver, "", "", "", "", "")
+        self.logout(driver)
+
+    def test_reg_incorrect_first_name_min_3(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "N", "White", "100003", "test3@mail.ru", "12345678")
+        self.logout(driver)
+
+    def test_reg_incorrect_first_name_max_4(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "NNNNNNNNNNNNNNNN", "White", "100004", "test4@mail.ru", "12345678")
+        self.logout(driver)
+
+    def test_reg_incorrect_second_name_4(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "Nigger", "W", "100004", "test4@mail.ru", "12345678")
+        self.logout(driver)
+
+    def test_reg_incorrect_phone_number_name_5(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "N", "White", "10000", "test5@mail.ru", "12345678")
+        self.logout(driver)
+
+    def test_reg_incorrect_first_name_3(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "N", "White", "100001", "test2@mail.ru", "12345678")
         self.logout(driver)
 
     def open_menu_page(self, driver, url):
