@@ -17,13 +17,7 @@ class Test_Reg(unittest.TestCase):
     def test_reg_correct_min_1(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "Ni", "White", "100001", "test1@mail.ru", "12345678")
-        self.logout(driver)
-
-    def test_reg_correct_middle_1(self):
-        driver = self.driver
-        self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "Nigger", "White", "100001", "test1@mail.ru", "12345678")
+        self.registration(driver, "Ni", "White", "8", "test@mail.ru", "12345678")
         self.logout(driver)
 
     def test_reg_correct_max_1(self):
