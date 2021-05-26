@@ -8,15 +8,22 @@ url="C:\\Users\\Glebo\\OneDrive\\Рабочий стол\\UIR\\chromedriver.exe"
 
 class Test_Menu_Basket(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(url)
         self.driver.implicitly_wait(30)
         self.base_url = "https://www.google.com/"
         self.verificationErrors = []
         self.accept_next_alert = True
-    
-    def test_menu_basket(self):
+
+    def open_menu_page(self, driver, url):
+        driver.get(url)
+
+    def test_menu_basket_all(self):
         driver = self.driver
-        driver.get("http://localhost:8080/menu")
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.menu_click_all(driver, "Holywood")
+
+    def menu_click_all(self, driver, address):
+        # Выбор блюд из меню
         driver.find_element_by_xpath("//div[@id='app']/section/section/section/div/div[2]/div/div[3]/i").click()
         driver.find_element_by_xpath("//div[@id='app']/section/section/section/div/div[2]/div[2]/div[3]/i").click()
         driver.find_element_by_xpath("//div[@id='app']/section/section/section/div/div[2]/div[3]/div[3]/i").click()
@@ -38,13 +45,17 @@ class Test_Menu_Basket(unittest.TestCase):
         driver.find_element_by_xpath("//div[@id='app']/section/section/section/div[5]/div[2]/div[3]/div[3]/i").click()
         driver.find_element_by_xpath("//div[@id='app']/section/section/section/div[5]/div[2]/div[4]/div[3]/i").click()
         driver.find_element_by_xpath("//div[@id='app']/section/section/section/div[5]/div[2]/div[5]/div[3]/i").click()
+        # Перейти в корзину
         driver.find_element_by_xpath("//div[@id='app']/section/header/div/div/i").click()
+        # Указать адрес доставки
         driver.find_element_by_xpath("//input[@type='text']").click()
         driver.find_element_by_xpath("//input[@type='text']").clear()
-        driver.find_element_by_xpath("//input[@type='text']").send_keys("Holywood")
+        driver.find_element_by_xpath("//input[@type='text']").send_keys(address)
+        # Оформить заказ
         driver.find_element_by_xpath("//div[@id='app']/section/section/section/div/div[4]/button").click()
+        # ОК
         driver.find_element_by_xpath("//button/div").click()
-    
+
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
@@ -69,6 +80,7 @@ class Test_Menu_Basket(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
         self.assertEqual([], self.verificationErrors)
+
 
 if __name__ == "__main__":
     unittest.main()
