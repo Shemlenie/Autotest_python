@@ -17,13 +17,19 @@ class Test_Reg(unittest.TestCase):
     def test_reg_correct_min_1(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "Ni", "White", "8", "test@mail.ru", "12345678")
+        self.registration(driver, "Ni", "White", "100001", "test1@mail.ru", "12345678")
+        self.logout(driver)
+
+    def test_reg_correct_middle_1(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "Nigger", "White", "100001", "test1@mail.ru", "12345678")
         self.logout(driver)
 
     def test_reg_correct_max_1(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "Niggerrrrrrrrrr", "White", "100001", "test1@mail.ru", "12345678")
+        self.registration(driver, "Niggerrrrrrrrrr", "White", "8", "test1@mail.ru", "12345678")
         self.logout(driver)
 
     def test_reg_empty_2(self):
@@ -76,13 +82,13 @@ class Test_Reg(unittest.TestCase):
         driver.find_element_by_xpath("(//input[@type='text'])[2]").clear()
         driver.find_element_by_xpath("(//input[@type='text'])[2]").send_keys(second_name)
         # Номер телефона
-        driver.find_element_by_xpath("//input[@type='number']").click()
-        driver.find_element_by_xpath("//input[@type='number']").clear()
-        driver.find_element_by_xpath("//input[@type='number']").send_keys(phone_number)
-        # Почта
         driver.find_element_by_xpath("(//input[@type='text'])[3]").click()
         driver.find_element_by_xpath("(//input[@type='text'])[3]").clear()
-        driver.find_element_by_xpath("(//input[@type='text'])[3]").send_keys(mail)
+        driver.find_element_by_xpath("(//input[@type='text'])[3]").send_keys(phone_number)
+        # Почта
+        driver.find_element_by_xpath("(//input[@type='text'])[4]").click()
+        driver.find_element_by_xpath("(//input[@type='text'])[4]").clear()
+        driver.find_element_by_xpath("(//input[@type='text'])[4]").send_keys(mail)
         # Пароль
         driver.find_element_by_xpath("//input[@type='password']").clear()
         driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
