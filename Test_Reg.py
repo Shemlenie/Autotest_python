@@ -17,19 +17,22 @@ class Test_Reg(unittest.TestCase):
     def test_reg_correct_min_1(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "Ni", "White", "100001", "test1@mail.ru", "12345678")
+        self.registration(driver, "Ni", "White", "9120120122", "testr@mail.ru", "12345678")
         self.logout(driver)
 
     def test_reg_correct_middle_1(self):
         driver = self.driver
-        self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "Nigger", "White", "100001", "test1@mail.ru", "12345678")
-        self.logout(driver)
+        temp_number = 9133394096
+        for i in range(100):
+            self.open_menu_page(driver, "http://localhost:8080/menu")
+            self.registration(driver, "Nigger", "White", temp_number, f"test{i}@mail.ru", "12345678")
+            self.logout(driver)
+            temp_number = temp_number + 1
 
     def test_reg_correct_max_1(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "Niggerrrrrrrrrr", "White", "8", "test1@mail.ru", "12345678")
+        self.registration(driver, "Niggerrrrrrrrrr", "White", "9233393996", "testt@mail.ru", "12345678")
         self.logout(driver)
 
     def test_reg_empty_2(self):
@@ -41,32 +44,44 @@ class Test_Reg(unittest.TestCase):
     def test_reg_incorrect_first_name_min_3(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "N", "White", "100003", "test3@mail.ru", "12345678")
+        self.registration(driver, "N", "White", "9998887744", "testw@mail.ru", "12345678")
         self.logout(driver)
 
-    def test_reg_incorrect_first_name_max_4(self):
+    def test_reg_incorrect_first_name_max_3(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "NNNNNNNNNNNNNNNN", "White", "100004", "test4@mail.ru", "12345678")
+        self.registration(driver, "NNNNNNNNNNNNNNNN", "White", "9998887743", "testq@mail.ru", "12345678")
         self.logout(driver)
 
-    def test_reg_incorrect_second_name_4(self):
+    def test_reg_incorrect_second_name_min_4(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "Nigger", "W", "100004", "test4@mail.ru", "12345678")
+        self.registration(driver, "Nigger", "W", "9998887742", "testa@mail.ru", "12345678")
         self.logout(driver)
 
-    def test_reg_incorrect_phone_number_name_5(self):
+    def test_reg_incorrect_second_name_min_4(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "N", "White", "10000", "test5@mail.ru", "12345678")
+        self.registration(driver, "Nigger", "Wwwwwwwwwwwwwwww", "9998887741", "testd@mail.ru", "12345678")
         self.logout(driver)
 
-    def test_reg_incorrect_first_name_3(self):
+    def test_reg_incorrect_phone_number_min_5(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "N", "White", "100001", "test2@mail.ru", "12345678")
+        self.registration(driver, "Nigger", "White", "9133594096", "test5@mail.ru", "12345678")
         self.logout(driver)
+
+    def test_reg_incorrect_phone_number_max_5(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "Nigger", "White", "1111111111111111111", "test5@mail.ru", "12345678")
+        self.logout(driver)
+
+    # def test_reg_incorrect_first_name_3(self):
+        # driver = self.driver
+        # self.open_menu_page(driver, "http://localhost:8080/menu")
+        # self.registration(driver, "N", "White", "100001", "test2@mail.ru", "12345678")
+        # self.logout(driver)
 
     def open_menu_page(self, driver, url):
         driver.get(url)
@@ -93,7 +108,7 @@ class Test_Reg(unittest.TestCase):
         driver.find_element_by_xpath("//input[@type='password']").clear()
         driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
         # Зарегистрироваться
-        driver.find_element_by_xpath("//div[@id='app']/section/section/section/div[2]/div/div[6]/button").click()
+        driver.find_element_by_xpath("//div[@id='app']/section/section/section/div[2]/div/div[7]/button").click()
 
     def logout(self, driver):
         driver.find_element_by_xpath("//div[@id='app']/section/header/div/div/i[3]").click()
