@@ -22,8 +22,9 @@ class Test_Reg(unittest.TestCase):
 
     def test_reg_correct_middle_1(self):
         driver = self.driver
-        temp_number = 9133394096
-        for i in range(100):
+        temp_number = 4
+
+        for i in range(10):
             self.open_menu_page(driver, "http://localhost:8080/menu")
             self.registration(driver, "Nigger", "White", temp_number, f"test{i}@mail.ru", "12345678")
             self.logout(driver)
