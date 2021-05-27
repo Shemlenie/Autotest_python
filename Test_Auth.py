@@ -22,7 +22,7 @@ class TestAuth(unittest.TestCase):
     def test_auth_incorrect_2(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.auth(driver, "test1111111@mail.ru", "12345678222")
+        self.auth(driver, "test1111112@mail.ru", "12345678222")
 
     def open_menu_page(self, driver, url):
         driver.get(url)
@@ -37,6 +37,7 @@ class TestAuth(unittest.TestCase):
         # time.sleep(5)
         driver.find_element_by_xpath("//input[@type='password']").clear()
         driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
+        # time.sleep(5)
         driver.find_element_by_xpath("//div[@id='app']/section/section/section/div[2]/div/div[4]/button").click()
 
     def is_element_present(self, how, what):

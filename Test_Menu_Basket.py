@@ -43,7 +43,7 @@ class Test_Menu_Basket(unittest.TestCase):
 
     def menu_click_limit(self, driver, address):
         # Выбор блюд из меню
-        for i in range(10):
+        for i in range(100):
             driver.find_element_by_xpath("//div[@id='app']/section/section/section/div/div[2]/div/div[3]/i").click()
         # Перейти в корзину
         driver.find_element_by_xpath("//div[@id='app']/section/header/div/div/i").click()
