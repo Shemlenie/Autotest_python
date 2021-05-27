@@ -14,13 +14,46 @@ class Test_Menu_Basket(unittest.TestCase):
         self.verificationErrors = []
         self.accept_next_alert = True
 
-    def open_menu_page(self, driver, url):
-        driver.get(url)
-
     def test_menu_basket_all(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
         self.menu_click_all(driver, "Holywood")
+
+    def test_menu_basket_limit(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.auth(driver, "test1@mail.ru", "12345678")
+        self.menu_click_limit(driver, "Fedora Litkina")
+
+    def open_menu_page(self, driver, url):
+        driver.get(url)
+
+    def auth(self, driver, mail, password):
+        # Почта
+        driver.find_element_by_xpath("//div[@id='app']/section/header/div/div/button").click()
+        driver.find_element_by_xpath("//input[@type='text']").click()
+        driver.find_element_by_xpath("//input[@type='text']").clear()
+        driver.find_element_by_xpath("//input[@type='text']").send_keys(mail)
+        # Пароль
+        # time.sleep(5)
+        driver.find_element_by_xpath("//input[@type='password']").clear()
+        driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
+        driver.find_element_by_xpath("//div[@id='app']/section/section/section/div[2]/div/div[4]/button").click()
+
+    def menu_click_limit(self, driver, address):
+        # Выбор блюд из меню
+        for i in range(10):
+            driver.find_element_by_xpath("//div[@id='app']/section/section/section/div/div[2]/div/div[3]/i").click()
+        # Перейти в корзину
+        driver.find_element_by_xpath("//div[@id='app']/section/header/div/div/i").click()
+        # Указать адрес доставки
+        driver.find_element_by_xpath("//input[@type='text']").click()
+        driver.find_element_by_xpath("//input[@type='text']").clear()
+        driver.find_element_by_xpath("//input[@type='text']").send_keys(address)
+        # Оформить заказ
+        driver.find_element_by_xpath("//div[@id='app']/section/section/section/div/div[4]/button").click()
+        # ОК
+        driver.find_element_by_xpath("//button/div").click()
 
     def menu_click_all(self, driver, address):
         # Выбор блюд из меню
