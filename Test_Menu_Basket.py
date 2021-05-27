@@ -17,6 +17,7 @@ class Test_Menu_Basket(unittest.TestCase):
     def test_menu_basket_all(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.auth(driver, "test1@mail.ru", "12345678")
         self.menu_click_all(driver, "Holywood")
 
     def test_menu_basket_limit(self):

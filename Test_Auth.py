@@ -19,6 +19,11 @@ class TestAuth(unittest.TestCase):
         self.open_menu_page(driver, "http://localhost:8080/menu")
         self.auth(driver, "test1@mail.ru", "12345678")
 
+    def test_auth_incorrect_2(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.auth(driver, "test1111111@mail.ru", "12345678222")
+
     def open_menu_page(self, driver, url):
         driver.get(url)
 

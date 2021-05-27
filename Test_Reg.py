@@ -69,13 +69,31 @@ class Test_Reg(unittest.TestCase):
     def test_reg_incorrect_phone_number_min_5(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
-        self.registration(driver, "Nigger", "White", "9133594096", "test5@mail.ru", "12345678")
+        self.registration(driver, "Nigger", "White", "9133594096", "testqwe@mail.ru", "12345678")
         self.logout(driver)
 
     def test_reg_incorrect_phone_number_max_5(self):
         driver = self.driver
         self.open_menu_page(driver, "http://localhost:8080/menu")
         self.registration(driver, "Nigger", "White", "1111111111111111111", "test5@mail.ru", "12345678")
+        self.logout(driver)
+
+    def test_reg_incorrect_mail_6(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "Nigger", "White", "89133694096", "testads@mail....ru", "12345678")
+        self.logout(driver)
+
+    def test_reg_incorrect_password_min_7(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "Nigger", "White", "89153694096", "testzxc@mail.ru", "1234567")
+        self.logout(driver)
+
+    def test_reg_incorrect_password_max_7(self):
+        driver = self.driver
+        self.open_menu_page(driver, "http://localhost:8080/menu")
+        self.registration(driver, "Nigger", "White", "89154694096", "testzg@mail.ru", "1234567890123456789012345678901")
         self.logout(driver)
 
     # def test_reg_incorrect_first_name_3(self):
